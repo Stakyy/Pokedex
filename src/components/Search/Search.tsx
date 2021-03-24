@@ -15,6 +15,10 @@ const Search: React.FC<searchProps> = (props) => {
 
   const search = (event: React.MouseEvent, value: string) => {
     event.preventDefault();
+    if (value.match(/^[ ]+$/)) {
+      // В значении только пробелы
+      value = value.replaceAll(' ', '');
+    }
     props.getPokemon(value);
   };
 

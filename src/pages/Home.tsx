@@ -48,14 +48,18 @@ const Home: React.FC = () => {
   const getPokemon = async (nameOrNumber: any) => {
     let link: string;
 
+    nameOrNumber.replaceAll(' ', '');
+
     if (nameOrNumber === '') {
       loadPokemons();
-    } else if (!isNaN(nameOrNumber)) {
+    } else if (!isNaN(Number(nameOrNumber))) {
       link = `${url}/${nameOrNumber}`;
       fetchPokemon(link);
       setNextUrl(null);
     } else {
-      link = `${url}/${nameOrNumber.toLowerCase()}`;
+      link = `${url}/${String(nameOrNumber).toLowerCase()}`;
+      link = link.trimStart();
+
       fetchPokemon(link);
       setNextUrl(null);
     }
