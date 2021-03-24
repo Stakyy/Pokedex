@@ -15,10 +15,7 @@ const Search: React.FC<searchProps> = (props) => {
 
   const search = (event: React.MouseEvent, value: string) => {
     event.preventDefault();
-    if (value.match(/^[ ]+$/)) {
-      // В значении только пробелы
-      value = value.replaceAll(' ', '');
-    }
+
     props.getPokemon(value);
   };
 
@@ -31,7 +28,7 @@ const Search: React.FC<searchProps> = (props) => {
           value={val}
           onChange={changeHandler}
         />
-        <button onClick={(event) => search(event, val)}>
+        <button onClick={(event) => search(event, val.replaceAll(' ', ''))}>
           <i className="button-img"></i>
         </button>
       </form>
